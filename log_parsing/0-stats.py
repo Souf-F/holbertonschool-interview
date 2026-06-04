@@ -35,15 +35,14 @@ def main():
                     file_size += size
                     status_codes[code] = status_codes.get(code, 0) + 1
                     line_count += 1
-                    
+
                     if line_count % 10 == 0:
                         print_stats(file_size, status_codes)
 
     except KeyboardInterrupt:
         pass
 
-    if line_count > 0:
-        print_stats(file_size, status_codes)
+    print_stats(file_size, status_codes)
 
 
 if __name__ == "__main__":
