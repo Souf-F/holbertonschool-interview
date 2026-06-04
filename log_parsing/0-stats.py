@@ -20,14 +20,12 @@ def main():
     file_size = 0
     status_codes = {}
 
-    pattern = (
-        r'.+ - \[.+\] "GET /projects/260 HTTP/1\.1" (\d+) (\d+)'
-    )
+    pattern = r'"GET /projects/260 HTTP/1\.1" (\d+) (\d+)'
     valid_codes = {200, 301, 400, 401, 403, 404, 405, 500}
 
     try:
         for line in sys.stdin:
-            match = re.match(pattern, line.strip())
+            match = re.search(pattern, line)
 
             if match:
                 code = int(match.group(1))
