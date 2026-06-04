@@ -19,23 +19,26 @@ def main():
     line_count = 0
     file_size = 0
     status_codes = {}
-    
-    pattern = r'^\d+\.\d+\.\d+\.\d+\s-\s\[.*\]\s"GET\s/projects/260\sHTTP/1\.1"\s(\d+)\s(\d+)$'
+
+    pattern = (
+        r'^\d+\.\d+\.\d+\.\d+ - \[.*?\] '
+        r'"GET /projects/260 HTTP/1\.1" (\d+) (\d+)$'
+    )
     valid_codes = {200, 301, 400, 401, 403, 404, 405, 500}
-    
+
     try:
         for line in sys.stdin:
             match = re.match(pattern, line.strip())
-            
+
             if match:
                 code = int(match.group(1))
                 size = int(match.group(2))
-                
+
                 if code in valid_codes:
                     file_size += size
                     status_codes[code] = status_codes.get(code, 0) + 1
                     line_count += 1
-                    
+
                     if line_count % 10 == 0:
                         print_stats(file_size, status_codes)
 
