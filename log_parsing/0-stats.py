@@ -21,7 +21,7 @@ def main():
     status_codes = {}
 
     pattern = (
-        r'^\d+\.\d+\.\d+\.\d+ - \[.*?\] '
+        r'^\d+\.\d+\.\d+\.\d+ - \[[^\]]*\] '
         r'"GET /projects/260 HTTP/1\.1" (\d+) (\d+)$'
     )
     valid_codes = {200, 301, 400, 401, 403, 404, 405, 500}
