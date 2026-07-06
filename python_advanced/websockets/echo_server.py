@@ -1,20 +1,16 @@
 #!/usr/bin/env python3
-"""Minimal WebSocket echo server.
-
-Listens on localhost:8765, accepts multiple concurrent clients,
-and echoes back any text message it receives.
-"""
+"""Minimal WebSocket echo server."""
 import asyncio
 import websockets
 
 
-async def echo(websocket):
+async def connection_handler(websocket):
     async for message in websocket:
         await websocket.send(message)
 
 
 async def main():
-    async with websockets.serve(echo, "localhost", 8765):
+    async with websockets.serve(connection_handler, "localhost", 8765):
         await asyncio.Future()
 
 
