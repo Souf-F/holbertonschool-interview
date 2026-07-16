@@ -6,22 +6,19 @@ import sys
 
 
 def create_board(n):
-    """initiate chess board"""
     return []
 
 
 def safe_square(row, col, board):
-    """check if a queen can be placed"""
     for i, j in board:
         if j == col:
             return False
-        if abs(i - row) == abs(j - col):  # column and diagonal check
+        if abs(i - row) == abs(j - col):
             return False
     return True
 
 
 def backtracking(n, row, board, result):
-    """recursive way to find the right path"""
     if row == n:
         result.append(list(board))
         return
@@ -30,11 +27,10 @@ def backtracking(n, row, board, result):
         if safe_square(row, col, board):
             board.append([row, col])
             backtracking(n, row + 1, board, result)
-            board.pop()  # The Backtrack
+            board.pop()
 
 
 def main():
-    """block handling"""
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
