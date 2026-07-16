@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""0-prime_game module - determines the winner of the Prime Game."""
+
 
 def isWinner(x, nums):
     """
@@ -19,7 +21,6 @@ def isWinner(x, nums):
     if max_n < 2:
         sieve = []
     else:
-        # Sieve of Eratosthenes up to max_n
         sieve = [True] * (max_n + 1)
         sieve[0] = False
         sieve[1] = False
